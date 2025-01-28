@@ -1,4 +1,9 @@
 .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5vh;
+  padding: 5vh 20px 200px 20px;
   background-color: var(--color-2);
   min-height: 100vh;
   width: 100%;
@@ -6,5 +11,39 @@
   font-family: var(--font-family-main), sans-serif;
   font-size: var(--font-size-medium);
   font-weight: var(--font-weight-light);
+
+  @media(max-width: 1000px) {
+    gap: 3vh;
+  }
+
+  @media(max-width: 800px) {
+    gap: 40px;
+    padding-top: 3vh;
+  }
+
+  @media(max-width: 600px) {
+    gap: 40px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .header {
+    font-size: 40px;
+    font-weight: var(--font-weight-light);
+
+    @media(max-width: 1000px) {
+      font-size: 36px;
+    }
+
+    @media(max-width: 800px) {
+      font-size: 30px;
+      text-align: center;
+    }
+
+    @media(max-width: 400px) {
+      font-size: 28px;
+    }
+  }
 }
+
 

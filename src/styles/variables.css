@@ -1,8 +1,11 @@
 :root {
   --color-1: #fff;
   --color-2: #000;
+  --color-3: #717171;
+  --error-color: brown;
   --font-family-main: 'Montserrat';
   --font-size-medium: 18px;
   --font-weight-light: 300;
   --font-weight-regular: 400;
+  --font-weight-medium: 500;
 }
