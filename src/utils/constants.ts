@@ -10,5 +10,4 @@ export const toastConfig: ToastOptions  = {
 	draggable: true,
 	theme: 'light',
 	toastId: v4(),
-	progress: null,
 };

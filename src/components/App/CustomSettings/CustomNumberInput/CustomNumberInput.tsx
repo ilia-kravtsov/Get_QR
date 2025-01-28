@@ -1,19 +1,17 @@
 import {ChangeEvent, FocusEvent, useState} from "react";
 import s from "./CustomNumberInput.module.scss";
 import {toast} from 'react-toastify';
+import {useDispatch} from "react-redux";
 import {toastConfig} from "../../../../utils/constants.ts";
+import {setSize} from "../../../../store/qrSlice.ts";
 
-type Props = {
-	setSizeCB: (size: number) => void;
-}
-
-const CustomNumberInput = ({ setSizeCB }: Props) => {
-	const [size, setSize] = useState<number>(256);
-	console.log('CustomNumberInput')
+const CustomNumberInput = () => {
+	const dispatch = useDispatch();
+	const [size, setSizeLocal] = useState<number>(256);
 	const increaseSize = () => {
-		setSize((prev) => {
+		setSizeLocal((prev) => {
 			const newSize = Math.min(prev + 10, 256);
-			setSizeCB(newSize);
+			dispatch(setSize(newSize));
 			if (newSize === 256) {
 				toast.info('Максимальный размер QR-кода: 256', toastConfig);
 			}
@@ -22,9 +20,9 @@ const CustomNumberInput = ({ setSizeCB }: Props) => {
 	};
 
 	const decreaseSize = () => {
-		setSize((prev) => {
+		setSizeLocal((prev) => {
 			const newSize = Math.max(prev - 10, 100);
-			setSizeCB(newSize);
+			dispatch(setSize(newSize));
 			if (newSize === 100) {
 				toast.info('Минимальный размер QR-кода: 100', toastConfig);
 			}
@@ -36,15 +34,15 @@ const CustomNumberInput = ({ setSizeCB }: Props) => {
 		const value = Number(e.target.value);
 		if (value > 256) {
 			toast.error('Размер не может быть больше 256', toastConfig);
-			setSize(256);
-			setSizeCB(256);
+			setSizeLocal(256);
+			dispatch(setSize(256));
 		} else if (value < 100) {
 			toast.error('Размер не может быть меньше 100', toastConfig);
-			setSize(100);
-			setSizeCB(100);
+			setSizeLocal(100);
+			dispatch(setSize(100));
 		} else {
-			setSize(value);
-			setSizeCB(value);
+			setSizeLocal(value);
+			dispatch(setSize(value));
 		}
 	};
 
@@ -52,20 +50,20 @@ const CustomNumberInput = ({ setSizeCB }: Props) => {
 		const value = Number(e.target.value);
 
 		if (value < 100) {
-			setSize(100);
-			setSizeCB(100);
+			setSizeLocal(100);
+			dispatch(setSize(100));
 		} else if (value > 256) {
-			setSize(256);
-			setSizeCB(256);
+			setSizeLocal(256);
+			dispatch(setSize(256));
 		} else {
-			setSize(value);
-			setSizeCB(value);
+			setSizeLocal(value);
+			dispatch(setSize(value));
 		}
 	};
 
 	return (
 		<div className={s.setting}>
-			<label className={s.label}>Размер:</label>
+			<label className={s.label}>Размер</label>
 			<div className={s.numberInputWrapper}>
 				<input
 					type="number"

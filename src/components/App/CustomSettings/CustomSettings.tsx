@@ -1,51 +1,28 @@
-import { TQualityQRLevel } from "../common/types.ts";
-import { FC } from "react";
 import s from './CustomSettings.module.scss'
 import CustomNumberInput from "./CustomNumberInput/CustomNumberInput.tsx";
 import CustomSelect from "./CustomSelect/CustomSelect.tsx";
+import {CustomColor} from "./CustomColor/CustomColor.tsx";
+import {CustomImageOpacity} from "./CustomImageOpacity/CustomImageOpacity.tsx";
+import {CustomImageUpload} from "./CustomImageUpload/CustomImageUpload.tsx";
+import CustomImageSize from "./CustomImageSize/CustomImageSize.tsx";
 
-type CustomSettingsProps = {
-	setBgColor: (color: string) => void;
-	setFgColor: (color: string) => void;
-	setSize: (size: number) => void;
-	setLevel: (level: TQualityQRLevel) => void;
-};
-
-const CustomSettings: FC<CustomSettingsProps> = ({
-																												 setBgColor,
-																												 setFgColor,
-																												 setSize,
-																												 setLevel
-																											 }) => {
-	console.log('CustomSettings')
-	const setSelectedValueCB = (value: TQualityQRLevel) => {
-		setLevel(value)
-	}
-
+const CustomSettings = () => {
 	return (
 		<div className={s.container}>
-			<div className={s.setting}>
-				<label className={s.label}>Цвет фона</label>
-				<input
-					className={s.inputColor}
-					type="color"
-					onChange={(e) => setBgColor(e.target.value)}
-					defaultValue="#ffffff"
-				/>
+			<h3 className={s.settingsHeader}>Настройки QR:</h3>
+			<div className={s.settingsFirstBox}>
+				<CustomColor colorType={'Back'} defaultColor={'#ffffff'}/>
+				<CustomColor colorType={'Front'} defaultColor={'#000000'}/>
+				<CustomNumberInput/>
+				<CustomSelect/>
 			</div>
-
-			<div className={s.setting}>
-				<label className={s.label}>Цвет кода</label>
-				<input
-					className={s.inputColor}
-					type="color"
-					onChange={(e) => setFgColor(e.target.value)}
-					defaultValue="#000000"
-				/>
+			<h3 className={s.settingsHeader}>Настройки изображения на QR:</h3>
+			<div className={s.settingsSecondBox}>
+				<CustomImageOpacity/>
+				<CustomImageSize/>
 			</div>
-
-			<CustomNumberInput setSizeCB={setSize}/>
-			<CustomSelect setSelectedValueCB={setSelectedValueCB}/>
+			<h3 className={s.settingsHeader}>Загрузка изображения на QR:</h3>
+			<CustomImageUpload/>
 		</div>
 	);
 };

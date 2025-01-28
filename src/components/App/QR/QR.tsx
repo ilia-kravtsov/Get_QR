@@ -2,44 +2,38 @@ import {QRCodeCanvas, QRCodeSVG} from 'qrcode.react';
 import {toast} from 'react-toastify';
 import s from './QR.module.scss';
 import {toastConfig} from "../../../utils/constants.ts";
-import {FC, useRef} from "react";
-import {TQualityQRLevel} from "../common/types.ts";
+import {useRef} from "react";
 import {Button} from "../common/Button/Button.tsx";
+import {useSelector} from "react-redux";
+import {RootState} from "../../../store/store.ts";
 
-type ImageSettings = {
-	src: string;
-	height: number;
-	width: number;
-	excavate: boolean;
-	x?: number;
-	y?: number;
-	opacity?: number;
-	crossOrigin?: 'anonymous' | 'use-credentials' | '' | undefined;
-};
+type CrossOrigin = 'anonymous' | 'use-credentials' | '' | undefined;
 
-type QRProps = {
-	value: string | string[];
-	size?: number;
-	level?: TQualityQRLevel;
-	bgColor?: string;
-	fgColor?: string;
-	marginSize?: number;
-	title?: string;
-	imageSettings?: ImageSettings;
-};
+type Props = {
+	link: string
+}
 
-export const QR: FC<QRProps> = ({
-																 value,
-																 size = 256,
-																 level = 'H',
-																 bgColor = '#ffffff',
-																 fgColor = '#000000',
-																 marginSize = 4,
-																 imageSettings
-															 }) => {
+export const QR = ({link}: Props) => {
+
+	const opacity = useSelector((state: RootState) => state.qr.opacity)
+	const bgColor = useSelector((state: RootState) => state.qr.bgColor)
+	const fgColor = useSelector((state: RootState) => state.qr.fgColor)
+	const size = useSelector((state: RootState) => state.qr.size)
+	const level = useSelector((state: RootState) => state.qr.level)
+	const imageSize = useSelector((state: RootState) => state.qr.imageSize)
+	const marginSize = 4;
+	const imageSettings = {
+		src: link,
+		height: size/imageSize,
+		width: size/imageSize,
+		excavate: false,
+		opacity: opacity,
+		crossOrigin: 'anonymous' as CrossOrigin,
+	};
 
 	const canvasRef = useRef<HTMLCanvasElement | null>(null);
 	const svgRef = useRef<SVGSVGElement | null>(null);
+
 	const handleDownloadPNG = () => {
 		const canvas = canvasRef.current;
 		if (canvas) {
@@ -81,7 +75,7 @@ export const QR: FC<QRProps> = ({
 						}),
 					],
 				});
-				toast.success('QR-код готов к отправке!');
+				toast.success('QR-код готов к отправке!', toastConfig);
 			} catch (error: unknown) {
 				const message = error instanceof Error ? error.message : 'Неизвестная ошибка';
 				toast.error(`Ошибка при попытке поделиться QR-кодом: ${message}`, toastConfig);
@@ -90,13 +84,13 @@ export const QR: FC<QRProps> = ({
 			toast.info('Функция "Поделиться" не поддерживается в вашем браузере.', toastConfig);
 		}
 	};
-	console.log('QR')
+
 	return (
 		<div className={s.container}>
 			<div className={s.qrsBox}>
 				<figure className={s.qrBoxPNG}>
 					<QRCodeCanvas
-						value={value}
+						value={link}
 						size={size}
 						fgColor={fgColor}
 						bgColor={bgColor}
@@ -110,7 +104,7 @@ export const QR: FC<QRProps> = ({
 				<div className={s.qrSVGContainer}>
 					<figure className={s.qrBoxSVG} style={{width: `${size}px`, height: `${size}px`}}>
 						<QRCodeSVG
-							value={value}
+							value={link}
 							size={size}
 							fgColor={fgColor}
 							bgColor={bgColor}

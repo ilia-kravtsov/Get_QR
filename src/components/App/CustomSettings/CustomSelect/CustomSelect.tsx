@@ -1,14 +1,13 @@
 import s from './CustomSelect.module.scss';
 import {useEffect, useRef, useState} from "react";
 import {TQualityQRLevel} from "../../common/types.ts";
+import {useDispatch} from "react-redux";
+import {setLevel} from "../../../../store/qrSlice.ts";
 
-type Props = {
-	setSelectedValueCB: (selectedValue: TQualityQRLevel) => void;
-}
-
-const CustomSelect = ({setSelectedValueCB}: Props) => {
+const CustomSelect = () => {
+	const dispatch = useDispatch();
 	const [isOpen, setIsOpen] = useState(false);
-	const [selectedValue, setSelectedValue] = useState("L");
+	const [selectedValue, setSelectedValue] = useState<TQualityQRLevel>("L");
 	const selectRef = useRef<HTMLDivElement | null>(null);
 
 	useEffect(() => {
@@ -32,7 +31,7 @@ const CustomSelect = ({setSelectedValueCB}: Props) => {
 		setSelectedValue(value);
 		setIsOpen(false);
 		if (value) {
-			setSelectedValueCB(value);
+			dispatch(setLevel(value));
 		}
 	};
 
