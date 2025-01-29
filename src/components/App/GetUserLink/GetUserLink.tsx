@@ -1,30 +1,27 @@
-import s from './InputLink.module.scss';
+import s from './GetUserLink.module.scss';
 import {ChangeEvent, useState} from "react";
 import {toast} from 'react-toastify';
 import {toastConfig} from "../../../utils/constants.ts";
 import {Button} from "../common/Button/Button.tsx";
-import {setLink} from "../../../store/qrSlice.ts";
+import {setUserLink} from "../../../store/qrSlice.ts";
 import {useDispatch} from "react-redux";
+import {isValidURL} from "../../../utils/validators.ts";
 
-export const InputLink = () => {
+export const GetUserLink = () => {
 	const [link, setLinkLocal] = useState<string>('');
 	const dispatch = useDispatch();
 
-	const isValidURL = (url: string): boolean => {
-		const regex = /^(https?:\/\/)?([\w-]+\.)+[\w-]{2,}(\/[\w-./?%&=]*)?$/i;
-		return regex.test(url);
-	};
 	const handleGetQRClick = () => {
-		if (link) {
-			if (isValidURL(link)) {
-				dispatch(setLink(link));
-				setLinkLocal('');
-				toast.success('Ваш QR-код создан.', toastConfig);
-			} else {
-				toast.error('Некорректная ссылка. Попробуйте еще раз.', toastConfig);
-			}
-		} else {
+		if (!link) {
 			toast.error('Добавьте ссылку.', toastConfig);
+			return;
+		} else if (!isValidURL(link)) {
+			toast.error('Некорректная ссылка.', toastConfig);
+			return;
+		} else {
+			setLinkLocal('');
+			dispatch(setUserLink(link));
+			toast.success('Ваш QR-код создан.', toastConfig);
 		}
 	};
 	const changeLink = (e: ChangeEvent<HTMLInputElement>) => setLinkLocal(e.currentTarget.value);

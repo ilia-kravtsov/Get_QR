@@ -5,28 +5,35 @@ import {toastConfig} from "../../../utils/constants.ts";
 import {useRef} from "react";
 import {Button} from "../common/Button/Button.tsx";
 import {useSelector} from "react-redux";
-import {RootState} from "../../../store/store.ts";
+import {
+	selectBgColor,
+	selectFgColor, selectImageSize, selectLevel,
+	selectOpacity, selectQrExcavate,
+	selectSize,
+	selectUserImageLink
+} from "../../../store/selectors.ts";
 
 type CrossOrigin = 'anonymous' | 'use-credentials' | '' | undefined;
 
 type Props = {
-	link: string
+	userLink: string
 }
 
-export const QR = ({link}: Props) => {
-
-	const opacity = useSelector((state: RootState) => state.qr.opacity)
-	const bgColor = useSelector((state: RootState) => state.qr.bgColor)
-	const fgColor = useSelector((state: RootState) => state.qr.fgColor)
-	const size = useSelector((state: RootState) => state.qr.size)
-	const level = useSelector((state: RootState) => state.qr.level)
-	const imageSize = useSelector((state: RootState) => state.qr.imageSize)
+export const QR = ({userLink}: Props) => {
+	const userImageLink = useSelector(selectUserImageLink);
+	const opacity = useSelector(selectOpacity)
+	const bgColor = useSelector(selectBgColor)
+	const fgColor = useSelector(selectFgColor)
+	const size = useSelector(selectSize)
+	const level = useSelector(selectLevel)
+	const imageSize = useSelector(selectImageSize)
+	const qrExcavate = useSelector(selectQrExcavate)
 	const marginSize = 4;
 	const imageSettings = {
-		src: link,
+		src: userImageLink,
 		height: size/imageSize,
 		width: size/imageSize,
-		excavate: false,
+		excavate: qrExcavate,
 		opacity: opacity,
 		crossOrigin: 'anonymous' as CrossOrigin,
 	};
@@ -90,7 +97,7 @@ export const QR = ({link}: Props) => {
 			<div className={s.qrsBox}>
 				<figure className={s.qrBoxPNG}>
 					<QRCodeCanvas
-						value={link}
+						value={userLink}
 						size={size}
 						fgColor={fgColor}
 						bgColor={bgColor}
@@ -104,7 +111,7 @@ export const QR = ({link}: Props) => {
 				<div className={s.qrSVGContainer}>
 					<figure className={s.qrBoxSVG} style={{width: `${size}px`, height: `${size}px`}}>
 						<QRCodeSVG
-							value={link}
+							value={userLink}
 							size={size}
 							fgColor={fgColor}
 							bgColor={bgColor}

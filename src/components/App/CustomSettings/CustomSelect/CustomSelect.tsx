@@ -7,7 +7,7 @@ import {setLevel} from "../../../../store/qrSlice.ts";
 const CustomSelect = () => {
 	const dispatch = useDispatch();
 	const [isOpen, setIsOpen] = useState(false);
-	const [selectedValue, setSelectedValue] = useState<TQualityQRLevel>("L");
+	const [selectedValue, setSelectedValue] = useState<TQualityQRLevel>("H");
 	const selectRef = useRef<HTMLDivElement | null>(null);
 
 	useEffect(() => {
@@ -40,18 +40,18 @@ const CustomSelect = () => {
 			<label className={s.label}>Качество</label>
 			<div className={s.customSelect} onClick={toggleDropdown} ref={selectRef}>
 				<div className={s.selectedOption}>
-					{selectedValue === "L" && "Низкое"}
-					{selectedValue === "M" && "Среднее"}
-					{selectedValue === "Q" && "Выше среднего"}
 					{selectedValue === "H" && "Высокий"}
+					{selectedValue === "Q" && "Выше среднего"}
+					{selectedValue === "M" && "Среднее"}
+					{selectedValue === "L" && "Низкое"}
 				</div>
 				<div className={`${s.dropdownIcon} ${isOpen ? s.open : ""}`}></div>
 				{isOpen && (
 					<ul className={`${s.optionsList} ${isOpen ? s.open : ""}`}>
-						<li onClick={() => handleSelect("L")}>Низкое</li>
-						<li onClick={() => handleSelect("M")}>Среднее</li>
-						<li onClick={() => handleSelect("Q")}>Выше среднего</li>
 						<li onClick={() => handleSelect("H")}>Высокий</li>
+						<li onClick={() => handleSelect("Q")}>Выше среднего</li>
+						<li onClick={() => handleSelect("M")}>Среднее</li>
+						<li onClick={() => handleSelect("L")}>Низкое</li>
 					</ul>
 				)}
 			</div>

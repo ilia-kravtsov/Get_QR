@@ -4,23 +4,43 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 20px;
+  width: 50%;
+
+  @media(max-width: 1800px) {
+    width: 70%;
+  }
+
+  @media(max-width: 1300px) {
+    width: 80%;
+  }
+
+  @media(max-width: 800px) {
+    width: 90%;
+  }
 
   @media(max-width: 1000px) {
     gap: 40px 20px;
   }
 
+  @media(max-width: 400px) {
+    gap: 20px;
+  }
+
   .settingsHeader {
+    text-align: center;
     font-weight: var(--font-weight-medium);
   }
 
   .settingsFirstBox {
     display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
     gap: 20px;
   }
 
   .settingsSecondBox {
-    display: flex;
-    gap: 20px;
+    @extend .settingsFirstBox;
   }
 }
 

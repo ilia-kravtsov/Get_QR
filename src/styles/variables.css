@@ -10,3 +10,10 @@
   --font-weight-regular: 400;
   --font-weight-medium: 500;
 }
+
+[data-theme="dark"] {
+  --color-1: #000;
+  --color-2: #fff;
+  --color-3: #bbb;
+  --color-4: #444;
+}

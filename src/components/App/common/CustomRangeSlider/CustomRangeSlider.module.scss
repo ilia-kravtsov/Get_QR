@@ -1,0 +1,77 @@
+.container {
+  max-width: 300px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+
+  .labelBox {
+    display: flex;
+    gap: 10px;
+
+    .amount {
+      width: 42px;
+    }
+  }
+
+  .inputRange {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(to right, var(--color-2), var(--color-1));
+    border-radius: 4px;
+    outline: none;
+    transition: background 0.3s ease, opacity 0.2s;
+    opacity: 0.7;
+  }
+
+  .inputRange::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--color-2);
+    border-radius: 50%;
+    border: 2px solid var(--color-1);
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.3s ease;
+  }
+
+  .inputRange::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: var(--color-2);
+    border-radius: 50%;
+    border: 2px solid var(--color-1);
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.3s ease;
+  }
+
+  .inputRange::-ms-thumb {
+    width: 20px;
+    height: 20px;
+    background: var(--color-2);
+    border-radius: 50%;
+    border: 2px solid var(--color-1);
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.3s ease;
+  }
+
+  .inputRange:hover::-webkit-slider-thumb {
+    background: var(--color-4);
+    transform: scale(1.2);
+  }
+
+  .inputRange:hover::-moz-range-thumb {
+    background: var(--color-4);
+    transform: scale(1.2);
+  }
+
+  .inputRange:hover::-ms-thumb {
+    background: var(--color-4);
+    transform: scale(1.2);
+  }
+}
+

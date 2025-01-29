@@ -1,8 +1,7 @@
-@import '../common/Button/Button.module.scss';
-
 .container {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 5vh;
 
   @media(max-width: 1000px) {
@@ -26,7 +25,6 @@
     .qrSVGContainer {
       width: 256px;
       height: 256px;
-      border-radius: 15px;
       display: flex;
       justify-content: center;
 
@@ -39,6 +37,7 @@
         height: 256px;
         border-radius: 15px;
         overflow: hidden;
+        box-shadow: 0 4px 15px var(--color-1);
         transition: width 0.2s ease, height 0.2s ease, transform 0.2s ease;
       }
     }
