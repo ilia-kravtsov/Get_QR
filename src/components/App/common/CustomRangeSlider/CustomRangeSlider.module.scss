@@ -1,5 +1,5 @@
 .container {
-  max-width: 300px;
+  max-width: 250px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -9,6 +9,7 @@
   .labelBox {
     display: flex;
     gap: 10px;
+    text-align: center;
 
     .amount {
       width: 42px;
@@ -25,6 +26,11 @@
     outline: none;
     transition: background 0.3s ease, opacity 0.2s;
     opacity: 0.7;
+
+    &:disabled {
+      opacity: 0.2;
+      cursor: not-allowed;
+    }
   }
 
   .inputRange::-webkit-slider-thumb {
@@ -32,7 +38,7 @@
     appearance: none;
     width: 20px;
     height: 20px;
-    background: var(--color-2);
+    background: var(--color-6);
     border-radius: 50%;
     border: 2px solid var(--color-1);
     cursor: pointer;
@@ -42,7 +48,7 @@
   .inputRange::-moz-range-thumb {
     width: 20px;
     height: 20px;
-    background: var(--color-2);
+    background: var(--color-6);
     border-radius: 50%;
     border: 2px solid var(--color-1);
     cursor: pointer;
@@ -52,25 +58,25 @@
   .inputRange::-ms-thumb {
     width: 20px;
     height: 20px;
-    background: var(--color-2);
+    background: var(--color-6);
     border-radius: 50%;
     border: 2px solid var(--color-1);
     cursor: pointer;
     transition: transform 0.2s ease, background 0.3s ease;
   }
 
-  .inputRange:hover::-webkit-slider-thumb {
-    background: var(--color-4);
+  .inputRange:not(:disabled):hover::-webkit-slider-thumb {
+    background: var(--color-5);
     transform: scale(1.2);
   }
 
-  .inputRange:hover::-moz-range-thumb {
-    background: var(--color-4);
+  .inputRange:not(:disabled):hover::-moz-range-thumb {
+    background: var(--color-5);
     transform: scale(1.2);
   }
 
-  .inputRange:hover::-ms-thumb {
-    background: var(--color-4);
+  .inputRange:not(:disabled):hover::-ms-thumb {
+    background: var(--color-5);
     transform: scale(1.2);
   }
 }

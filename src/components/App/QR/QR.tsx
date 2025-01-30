@@ -12,6 +12,7 @@ import {
 	selectSize,
 	selectUserImageLink
 } from "../../../store/selectors.ts";
+import {useTranslation} from "../../../utils/customHooks.ts";
 
 type CrossOrigin = 'anonymous' | 'use-credentials' | '' | undefined;
 
@@ -40,6 +41,8 @@ export const QR = ({userLink}: Props) => {
 
 	const canvasRef = useRef<HTMLCanvasElement | null>(null);
 	const svgRef = useRef<SVGSVGElement | null>(null);
+
+	const { t } = useTranslation();
 
 	const handleDownloadPNG = () => {
 		const canvas = canvasRef.current;
@@ -126,9 +129,9 @@ export const QR = ({userLink}: Props) => {
 			</div>
 
 			<div className={s.buttonBox}>
-				<Button title={'Скачать в PNG'} onClickCB={handleDownloadPNG}/>
-				<Button title={'Скачать в SVG'} onClickCB={handleDownloadSVG}/>
-				<Button title={'Поделиться QR-кодом'} onClickCB={handleShareQR}/>
+				<Button title={t('buttonTitleDownLoadPNG')} onClickCB={handleDownloadPNG}/>
+				<Button title={t('buttonTitleDownLoadSVG')} onClickCB={handleDownloadSVG}/>
+				<Button title={t('buttonTitleShareQR')} onClickCB={handleShareQR}/>
 			</div>
 		</div>
 	);

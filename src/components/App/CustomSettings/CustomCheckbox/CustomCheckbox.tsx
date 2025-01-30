@@ -1,18 +1,16 @@
 import s from './CustomCheckbox.module.scss'
 import {v4} from "uuid";
 import {useDispatch, useSelector} from "react-redux";
-import {setQrExcavate} from "../../../../store/qrSlice.ts";
+import {setQrExcavate} from "../../../../store/slices/qrSlice.ts";
 import {selectQrExcavate} from "../../../../store/selectors.ts";
 
 interface Props {
 	size?: number;
-	borderColor?: string;
 	label?: string;
 }
 
 export const CustomCheckbox = ({
 																 size = 24,
-																 borderColor = "#ffffff",
 																 label
 															 }: Props) => {
 	const dispatch = useDispatch();
@@ -22,12 +20,12 @@ export const CustomCheckbox = ({
 
 	return (
 		<div className={s.container}>
-			<label htmlFor={checkBoxId}>{label}</label>
+			<label htmlFor={checkBoxId} onClick={changeStatus} className={s.label}>{label}</label>
 			<div
 				id={checkBoxId}
 				className={s.checkbox}
 				onClick={changeStatus}
-				style={{width: size, height: size, borderColor}}
+				style={{width: size, height: size}}
 			>
 				<div
 					className={`${s.innerSquare} ${qrExcavate ? s.checked : ""}`}

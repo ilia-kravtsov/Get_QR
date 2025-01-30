@@ -1,15 +1,17 @@
 import s from './GetUserLink.module.scss';
-import {ChangeEvent, useState} from "react";
+import {ChangeEvent, forwardRef, useState} from "react";
 import {toast} from 'react-toastify';
 import {toastConfig} from "../../../utils/constants.ts";
 import {Button} from "../common/Button/Button.tsx";
-import {setUserLink} from "../../../store/qrSlice.ts";
+import {setUserLink} from "../../../store/slices/qrSlice.ts";
 import {useDispatch} from "react-redux";
 import {isValidURL} from "../../../utils/validators.ts";
+import {useTranslation} from "../../../utils/customHooks.ts";
 
-export const GetUserLink = () => {
+export const GetUserLink = forwardRef<HTMLDivElement>((_, ref) => {
 	const [link, setLinkLocal] = useState<string>('');
 	const dispatch = useDispatch();
+	const { t } = useTranslation();
 
 	const handleGetQRClick = () => {
 		if (!link) {
@@ -27,16 +29,16 @@ export const GetUserLink = () => {
 	const changeLink = (e: ChangeEvent<HTMLInputElement>) => setLinkLocal(e.currentTarget.value);
 
 	return (
-		<div className={s.container}>
+		<div className={s.container} ref={ref}>
 			<input
 				className={s.input}
 				type="url"
 				value={link}
 				maxLength={2084}
 				onChange={changeLink}
-				placeholder={'https://www.example.com'}
+				placeholder={t('placeholderInput')}
 			/>
-			<Button title={'Получить QR'} onClickCB={handleGetQRClick}/>
+			<Button title={t('buttonTitleGetUserLink')} onClickCB={handleGetQRClick}/>
 		</div>
 	);
-};
+});

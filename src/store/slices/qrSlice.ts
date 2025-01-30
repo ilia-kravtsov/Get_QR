@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { TQualityQRLevel } from "../components/App/common/types.ts";
+import { TQualityQRLevel } from "../../components/App/common/types.ts";
 
 interface QRState {
 	userLink: string;
@@ -47,6 +47,9 @@ const qrSlice = createSlice({
 		setUserImage(state, action: PayloadAction<string>) {
 			state.userImageLink = action.payload;
 		},
+		deleteUserImageLink(state, action: PayloadAction<string>) {
+			state.userImageLink = action.payload;
+		},
 		setOpacity(state, action: PayloadAction<number>) {
 			state.opacity = action.payload;
 		},
@@ -68,7 +71,8 @@ export const {
 	setOpacity,
 	setImageSize,
 	setUserImage,
-	setQrExcavate
+	setQrExcavate,
+	deleteUserImageLink
 } = qrSlice.actions;
 
 export default qrSlice.reducer;

@@ -6,11 +6,14 @@ import './styles/variables.css';
 import './assets/fonts/stylesheet.css'
 import {Provider} from "react-redux";
 import {store} from "./store/store.ts";
+import {ThemeProvider} from "./components/App/Theme/ThemeProvider.tsx";
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}>
-      <App />
+      <ThemeProvider>
+        <App />
+      </ThemeProvider>
     </Provider>
   </StrictMode>,
 )

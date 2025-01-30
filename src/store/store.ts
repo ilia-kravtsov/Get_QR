@@ -1,9 +1,11 @@
 import {configureStore} from "@reduxjs/toolkit";
-import qrReducer from './qrSlice.ts'
+import qrReducer from './slices/qrSlice.ts'
+import languageSlice from "./slices/languageSlice.ts";
 
 export const store = configureStore({
 	reducer: {
-		qr: qrReducer
+		qr: qrReducer,
+		language: languageSlice
 	}
 });
 

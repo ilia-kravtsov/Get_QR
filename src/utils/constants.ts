@@ -11,3 +11,4 @@ export const toastConfig: ToastOptions  = {
 	theme: 'light',
 	toastId: v4(),
 };
+

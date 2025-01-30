@@ -50,7 +50,7 @@
     position: absolute;
     top: 5px;
     left: 5px;
-    background: linear-gradient(180deg, #ffcc89, #d8860b);
+    background: linear-gradient(180deg, var(--color-3), var(--color-2));
     border-radius: 40px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     transition: 0.3s;

@@ -1,21 +1,23 @@
-import {ChangeEvent, useEffect, useState} from "react";
+import {ChangeEvent, useState} from "react";
 import {useDispatch} from "react-redux";
-import {setUserImage} from "../../../../store/qrSlice.ts";
+import {setUserImage} from "../../../../store/slices/qrSlice.ts";
 import {toast} from "react-toastify";
 import s from "./CustomImageUpload.module.scss";
 import {Button} from "../../common/Button/Button.tsx";
 import {toastConfig} from "../../../../utils/constants.ts";
+import {useTranslation} from "../../../../utils/customHooks.ts";
 
-export const CustomImageUpload = () => {
+type Props = {
+	handleImageUploadCB: () => void
+}
+
+export const CustomImageUpload = ({handleImageUploadCB}: Props) => {
 	const dispatch = useDispatch();
 	const [imageUrl, setImageUrl] = useState<string>("");
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const [isValidImage, setIsValidImage] = useState<boolean>(false);
 	const [error, setError] = useState<boolean>(false);
-
-	useEffect(() => {
-		toast.info('Корректная ссылка заканчивается на .jpeg .jpg .png .gif .webp .svg', toastConfig)
-	}, [error])
+	const { t } = useTranslation();
 
 	const isDirectImageLink = (url: string): boolean => {
 		return /\.(jpeg|jpg|png|gif|webp|bmp|svg)$/i.test(url);
@@ -87,7 +89,9 @@ export const CustomImageUpload = () => {
 		}
 
 		dispatch(setUserImage(imageUrl));
-		toast.info("Изображение добавилось на QR", toastConfig);
+		toast.info("Лого добавилось на QR", toastConfig);
+		toast.info("Для отображения лого .gif может понадобиться больше времени", toastConfig);
+		handleImageUploadCB()
 		setImageUrl("");
 		setIsValidImage(false);
 		setIsLoading(false);
@@ -99,12 +103,12 @@ export const CustomImageUpload = () => {
 	return (
 		<div className={s.container}>
 			<div className={s.inputUrlBox}>
-				<label htmlFor="url-input">Вставьте прямую ссылку на изображение:</label>
-				<span>Они заканчиваются на .jpeg .jpg .png .gif .webp .svg</span>
+				<label htmlFor="url-input">{t('labelImageUpload')}</label>
+				<span>{t('labelImageUploadFormat')}</span>
 				<input
 					type="text"
 					id="url-input"
-					placeholder="https://example.com/images/photo.jpg"
+					placeholder={t('placeholderInputImageToQr')}
 					onChange={handleUrlChange}
 					className={s.inputUrl}
 					value={imageUrl}
@@ -116,8 +120,8 @@ export const CustomImageUpload = () => {
 				{imageUrl && isValidImage && (
 					<figure className={`${s.previewBox} ${imageUrl && isValidImage ? s.previewBoxVisible : ""}`}>
 						<figcaption className={s.previewBoxCaption}>
-							<p>Просмотр загруженного изображения</p>
-							<p>Скорость отображения зависит от интернет соединения</p>
+							<p>{t('figcaptionFirstP')}</p>
+							<p>{t('figcaptionSecondP')}</p>
 						</figcaption>
 						{isLoading && <div className={s.spinner}></div>}
 						<img
@@ -131,9 +135,8 @@ export const CustomImageUpload = () => {
 
 				{imageUrl && isValidImage && (
 					<Button
-						title={isLoading ? "Загрузка..." : "Добавить изображение на QR"}
+						title={t('buttonTitleAddLogoToQR')}
 						onClickCB={handleImageUpload}
-						size={true}
 						disabled={error}
 					/>
 				)}

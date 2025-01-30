@@ -1,7 +1,8 @@
 import s from "./CustomColor.module.scss";
 import {ChangeEvent} from "react";
 import {useDispatch} from "react-redux";
-import {setBgColor, setFgColor} from "../../../../store/qrSlice.ts";
+import {setBgColor, setFgColor} from "../../../../store/slices/qrSlice.ts";
+import {useTranslation} from "../../../../utils/customHooks.ts";
 
 type TColorType = 'Back' | 'Front'
 
@@ -12,6 +13,7 @@ type Props = {
 
 export const CustomColor = ({colorType, defaultColor}: Props) => {
 	const dispatch = useDispatch();
+	const { t } = useTranslation();
 
 	const setSelectedColor = (e: ChangeEvent<HTMLInputElement>) => {
 		if (colorType === 'Back') {
@@ -23,10 +25,11 @@ export const CustomColor = ({colorType, defaultColor}: Props) => {
 
 	return (
 		<div className={s.setting}>
-			<label className={s.label}>
-				{colorType === 'Back' ? 'Цвет фона' : 'Цвет кода'}
+			<label className={s.label} htmlFor={`color-${colorType}`}>
+				{colorType === 'Back' ? t('labelBackgroundColor') : t('labelCodeColor')}
 			</label>
 			<input
+				id={`color-${colorType}`}
 				className={s.inputColor}
 				type="color"
 				onChange={setSelectedColor}

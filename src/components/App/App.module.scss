@@ -28,6 +28,25 @@
   }
 
   .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 50%;
+
+    @media(max-width: 1800px) {
+      width: 70%;
+    }
+
+    @media(max-width: 1300px) {
+      width: 80%;
+    }
+
+    @media(max-width: 800px) {
+      width: 90%;
+    }
+  }
+
+  .headerTitle {
     font-size: 40px;
     font-weight: var(--font-weight-light);
 
