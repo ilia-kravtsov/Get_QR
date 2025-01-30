@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { TQualityQRLevel } from "../../components/App/common/types.ts";
+import {TMinMaxImageQRSize, TQualityQRLevel} from "../../components/App/common/types.ts";
 
 interface QRState {
 	userLink: string;
@@ -11,6 +11,7 @@ interface QRState {
 	imageSize: number;
 	userImageLink: string;
 	qrExcavate: boolean;
+	minMaxImageQRSize: TMinMaxImageQRSize;
 }
 
 const initialState: QRState = {
@@ -22,7 +23,8 @@ const initialState: QRState = {
 	opacity: 0.5,
 	imageSize: 3,
 	userImageLink: '',
-	qrExcavate: false
+	qrExcavate: false,
+	minMaxImageQRSize: {min: 1, max: 7},
 };
 
 const qrSlice = createSlice({
@@ -56,6 +58,9 @@ const qrSlice = createSlice({
 		setImageSize(state, action: PayloadAction<number>) {
 			state.imageSize = action.payload;
 		},
+		setMinAndMaxValueToQR(state, action: PayloadAction<TMinMaxImageQRSize>) {
+			state.minMaxImageQRSize = action.payload;
+		},
 		setQrExcavate(state, action: PayloadAction<boolean>) {
 			state.qrExcavate = action.payload;
 		}
@@ -72,7 +77,8 @@ export const {
 	setImageSize,
 	setUserImage,
 	setQrExcavate,
-	deleteUserImageLink
+	deleteUserImageLink,
+	setMinAndMaxValueToQR
 } = qrSlice.actions;
 
 export default qrSlice.reducer;
