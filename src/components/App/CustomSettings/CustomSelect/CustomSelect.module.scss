@@ -1,0 +1,65 @@
+.setting {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  @media(max-width: 400px) {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .customSelect {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    width: 200px;
+    padding: 10px;
+    background-color: var(--color-2);
+    border: 1px solid var(--color-1);
+    border-radius: 4px;
+    font-size: 16px;
+
+    .selectedOption {
+      padding: 5px;
+      background-color: var(--color-2);
+    }
+  }
+
+  .dropdownIcon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    transition: transform 0.3s ease;
+  }
+
+  .dropdownIcon.open {
+    transform: translateY(-50%) rotate(180deg);
+  }
+
+  .optionsList {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--color-2);
+    border: 1px solid var(--color-1);
+    border-radius: 5px;
+    z-index: 10;
+    max-height: 150px;
+    overflow-y: auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .optionsList li {
+    padding: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+
+  .optionsList li:hover {
+    background-color: var(--color-3);
+  }
+}
+
+

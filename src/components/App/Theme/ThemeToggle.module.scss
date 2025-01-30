@@ -1,0 +1,81 @@
+.toggleContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.toggleCheckbox {
+  display: none;
+
+  &:checked + .toggleLabel {
+    background: #242424;
+
+    &:after {
+      left: 95px;
+      transform: translateX(-100%);
+      background: linear-gradient(180deg, #777, #3a3a3a);
+    }
+
+    .sun {
+      fill: #7e7e7e;
+    }
+
+    .moon {
+      fill: #fff;
+    }
+
+    + .background {
+      background: #242424;
+    }
+  }
+}
+
+.toggleLabel {
+  width: 100px;
+  height: 50px;
+  position: relative;
+  display: block;
+  background: #ebebeb;
+  border-radius: 50px;
+  box-shadow: inset 0 5px 15px rgba(0, 0, 0, 0.4),
+  inset 0px -5px 15px rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:after {
+    content: "";
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    background: linear-gradient(180deg, var(--color-3), var(--color-2));
+    border-radius: 40px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+  }
+
+  .icon {
+    position: absolute;
+    width: 30px;
+    top: 10px;
+    z-index: 100;
+  }
+
+  .sun {
+    left: 10px;
+    fill: #fff;
+    transition: 0.3s;
+  }
+
+  .moon {
+    right: 10px;
+    fill: #7e7e7e;
+    transition: 0.3s;
+  }
+
+}
+
+
+

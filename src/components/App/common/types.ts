@@ -1,0 +1,1 @@
+export type TQualityQRLevel = 'L' | 'M' | 'Q' | 'H'
