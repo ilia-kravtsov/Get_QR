@@ -14,6 +14,7 @@ import {Button} from "./common/Button/Button.tsx";
 import {useTranslation} from "../../utils/customHooks.ts";
 import ThemeToggle from "./Theme/ThemeToggle.tsx";
 import {useRef} from "react";
+import {CustomToggle} from "./common/CustomToggle/CustomToggle.tsx";
 
 function App() {
   const dispatch = useDispatch();
