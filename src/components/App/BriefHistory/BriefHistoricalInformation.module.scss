@@ -12,15 +12,15 @@
   .text {
     width: 50%;
 
-    @media(max-width: 1800px) {
+    @media (max-width: 1800px) {
       width: 70%;
     }
 
-    @media(max-width: 1300px) {
+    @media (max-width: 1300px) {
       width: 80%;
     }
 
-    @media(max-width: 800px) {
+    @media (max-width: 800px) {
       width: 90%;
     }
   }
