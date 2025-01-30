@@ -32,7 +32,7 @@ export const GetUserLink = forwardRef<HTMLDivElement>((_, ref) => {
 		<div className={s.container} ref={ref}>
 			<input
 				className={s.input}
-				type="url"
+				type='url'
 				value={link}
 				maxLength={2084}
 				onChange={changeLink}
