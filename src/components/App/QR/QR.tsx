@@ -7,7 +7,7 @@ import {Button} from "../common/Button/Button.tsx";
 import {useSelector} from "react-redux";
 import {
 	selectBgColor,
-	selectFgColor, selectImageSize, selectLevel,
+	selectFgColor, selectImageSize, selectLevel, selectMinMaxImageQRSize,
 	selectOpacity, selectQrExcavate,
 	selectSize,
 	selectUserImageLink
@@ -29,11 +29,12 @@ export const QR = ({userLink}: Props) => {
 	const level = useSelector(selectLevel)
 	const imageSize = useSelector(selectImageSize)
 	const qrExcavate = useSelector(selectQrExcavate)
+	const minMaxImageQRSize = useSelector(selectMinMaxImageQRSize)
 	const marginSize = 4;
 	const imageSettings = {
 		src: userImageLink,
-		height: size/imageSize,
-		width: size/imageSize,
+			height: size / (minMaxImageQRSize.max - imageSize + minMaxImageQRSize.min),
+			width: size / (minMaxImageQRSize.max - imageSize + minMaxImageQRSize.min),
 		excavate: qrExcavate,
 		opacity: opacity,
 		crossOrigin: 'anonymous' as CrossOrigin,

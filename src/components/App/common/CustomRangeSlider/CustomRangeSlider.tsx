@@ -6,6 +6,7 @@ import {toastConfig} from "../../../../utils/constants.ts";
 import {toast} from "react-toastify";
 import {selectUserImageLink} from "../../../../store/selectors.ts";
 import {useTranslation} from "../../../../utils/customHooks.ts";
+import {setMinAndMaxValueToQR} from "../../../../store/slices/qrSlice.ts";
 
 interface CustomRangeSliderProps {
 	label: string;
@@ -30,6 +31,9 @@ export const CustomRangeSlider = ({ label, min, max, step, initialValue, onChang
 		const newValue = parseFloat(e.target.value);
 		setValue(newValue);
 		dispatch(onChange(newValue));
+		if (label === t('sliderImageSize')) {
+			dispatch(setMinAndMaxValueToQR({min, max}));
+		}
 	};
 
 	return (

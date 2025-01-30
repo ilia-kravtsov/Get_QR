@@ -9,5 +9,6 @@ export const selectSize = (state: RootState) => state.qr.size;
 export const selectLevel = (state: RootState) => state.qr.level;
 export const selectImageSize = (state: RootState) => state.qr.imageSize;
 export const selectQrExcavate = (state: RootState) => state.qr.qrExcavate;
+export const selectMinMaxImageQRSize = (state: RootState) => state.qr.minMaxImageQRSize;
 
 export const languageSelect = (state: RootState) => state.language.language
