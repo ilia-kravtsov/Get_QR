@@ -7,7 +7,7 @@
     cursor: pointer;
   }
 
-  @media(max-width: 400px) {
+  @media (max-width: 400px) {
     flex-direction: column;
   }
 
@@ -37,4 +37,3 @@
     transform: scale(1);
   }
 }
-

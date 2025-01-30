@@ -4,15 +4,15 @@
   align-items: center;
   width: 50%;
 
-  @media(max-width: 1800px) {
+  @media (max-width: 1800px) {
     width: 70%;
   }
 
-  @media(max-width: 1300px) {
+  @media (max-width: 1300px) {
     width: 80%;
   }
 
-  @media(max-width: 800px) {
+  @media (max-width: 800px) {
     width: 90%;
   }
 
@@ -28,9 +28,8 @@
     border-radius: 4px;
     margin-bottom: 5vh;
 
-    @media(max-width: 1000px) {
+    @media (max-width: 1000px) {
       margin-bottom: 50px;
     }
   }
 }
-

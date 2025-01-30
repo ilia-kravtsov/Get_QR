@@ -1,2 +1,2 @@
 export type TQualityQRLevel = 'L' | 'M' | 'Q' | 'H'
-export type TMinMaxImageQRSize = { min: number, max: number }
+export type TMinMaxImageQRSize = { min: number; max: number }

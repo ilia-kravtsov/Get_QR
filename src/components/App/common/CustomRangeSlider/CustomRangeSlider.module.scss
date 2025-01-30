@@ -24,7 +24,9 @@
     background: linear-gradient(to right, var(--color-2), var(--color-1));
     border-radius: 4px;
     outline: none;
-    transition: background 0.3s ease, opacity 0.2s;
+    transition:
+      background 0.3s ease,
+      opacity 0.2s;
     opacity: 0.7;
 
     &:disabled {
@@ -42,7 +44,9 @@
     border-radius: 50%;
     border: 2px solid var(--color-1);
     cursor: pointer;
-    transition: transform 0.2s ease, background 0.3s ease;
+    transition:
+      transform 0.2s ease,
+      background 0.3s ease;
   }
 
   .inputRange::-moz-range-thumb {
@@ -52,7 +56,9 @@
     border-radius: 50%;
     border: 2px solid var(--color-1);
     cursor: pointer;
-    transition: transform 0.2s ease, background 0.3s ease;
+    transition:
+      transform 0.2s ease,
+      background 0.3s ease;
   }
 
   .inputRange::-ms-thumb {
@@ -62,7 +68,9 @@
     border-radius: 50%;
     border: 2px solid var(--color-1);
     cursor: pointer;
-    transition: transform 0.2s ease, background 0.3s ease;
+    transition:
+      transform 0.2s ease,
+      background 0.3s ease;
   }
 
   .inputRange:not(:disabled):hover::-webkit-slider-thumb {
@@ -80,4 +88,3 @@
     transform: scale(1.2);
   }
 }
-

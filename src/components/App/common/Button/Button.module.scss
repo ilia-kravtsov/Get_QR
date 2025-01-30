@@ -13,7 +13,10 @@
   color: var(--color-2);
   border: none;
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
 
   &:not(:disabled):active {
     transform: scale(0.95);
@@ -26,5 +29,3 @@
     opacity: 0.6;
   }
 }
-
-

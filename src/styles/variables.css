@@ -13,7 +13,7 @@
   --font-weight-medium: 500;
 }
 
-[data-theme="dark"] {
+[data-theme='dark'] {
   --color-1: #000;
   --color-2: #fff;
   --color-3: #bbb;

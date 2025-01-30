@@ -1,4 +1,4 @@
 export const isValidURL = (url: string): boolean => {
-	const regex = /^(https?:\/\/)?([\w-]+\.)+[\w-]{2,}(\/[\w-./?%&=]*)?$/i;
-	return regex.test(url);
-};
+  const regex = /^(https?:\/\/)?([\w-]+\.)+[a-zA-Z]{2,}(\/[\w-./?%&=]*)?$/i
+  return regex.test(url) && url === url.trim()
+}

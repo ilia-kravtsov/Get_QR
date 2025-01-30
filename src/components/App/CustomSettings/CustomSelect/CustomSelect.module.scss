@@ -3,7 +3,7 @@
   align-items: center;
   gap: 10px;
 
-  @media(max-width: 400px) {
+  @media (max-width: 400px) {
     flex-direction: column;
     gap: 20px;
   }
@@ -61,5 +61,3 @@
     background-color: var(--color-3);
   }
 }
-
-
