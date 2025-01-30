@@ -88,7 +88,7 @@ export const QR = ({userLink}: Props) => {
 				toast.success('QR-код готов к отправке!', toastConfig);
 			} catch (error: unknown) {
 				const message = error instanceof Error ? error.message : 'Неизвестная ошибка';
-				toast.error(`Ошибка при попытке поделиться QR-кодом: ${message}`, toastConfig);
+				console.error(`Ошибка при попытке поделиться QR-кодом: ${message}`, toastConfig);
 			}
 		} else {
 			toast.info('Функция "Поделиться" не поддерживается в вашем браузере.', toastConfig);
