@@ -28,7 +28,7 @@ export const checkImageMimeType = async (url: string, setIsValidImageCB: (value:
   }
 }
 
-export const validateImageUrl = async (url: string, setIsValidImageCB: (value: boolean) => void) => {
+export const validateDirectImageUrl = async (url: string, setIsValidImageCB: (value: boolean) => void) => {
   if (!url) {
     toast.info('Введите корректную ссылку ;)', toastConfig);
     setIsValidImageCB(false);

@@ -4,7 +4,7 @@ import { setUserImage } from '../../../../store/slices/qrSlice.ts'
 import s from './CustomImageUpload.module.scss'
 import { Button } from '../../common/Button/Button.tsx'
 import { useTranslation } from '../../../../utils/customHooks.ts'
-import { validateImageUrl } from '../../../../utils/validators.ts'
+import { validateDirectImageUrl } from '../../../../utils/validators.ts'
 
 type Props = {
   handleImageUploadCB: () => void
@@ -20,14 +20,14 @@ export const CustomImageUpload = ({ handleImageUploadCB }: Props) => {
   const handleUrlChange = async (e: ChangeEvent<HTMLInputElement>) => setImageUrl(e.target.value.trim())
 
   const handleBlurValidation = async () => {
-    const isValid = await validateImageUrl(imageUrl, setIsValidImage)
+    const isValid = await validateDirectImageUrl(imageUrl, setIsValidImage)
     if (isValid) {
       setIsValidImage(true)
     }
   }
 
   const handleImageUpload = async () => {
-    const isValid = await validateImageUrl(imageUrl, setIsValidImage)
+    const isValid = await validateDirectImageUrl(imageUrl, setIsValidImage)
     if (isValid) {
       setIsValidImage(true)
       dispatch(setUserImage(imageUrl))
