@@ -2,7 +2,7 @@ import { QRCodeCanvas, QRCodeSVG } from 'qrcode.react'
 import { toast } from 'react-toastify'
 import s from './QR.module.scss'
 import { toastConfig } from '../../../utils/constants.ts'
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { Button } from '../common/Button/Button.tsx'
 import { useSelector } from 'react-redux'
 import {
@@ -48,6 +48,12 @@ export const QR = ({ userLink }: Props) => {
   const svgRef = useRef<SVGSVGElement | null>(null)
 
   const { t } = useTranslation()
+
+  useEffect(() => {
+    if (userImageLink) {
+      toast.info('Лого добавилось на QR', toastConfig)
+    }
+  }, [userImageLink])
 
   const handleDownloadPNG = () => {
     const canvas = canvasRef.current
