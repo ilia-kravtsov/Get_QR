@@ -6,5 +6,5 @@ export default defineConfig({
   server: {
     open: true,
   },
-  base: '/Get_QR/',
+  base: '/get_qr/',
 })
